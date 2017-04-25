@@ -30,6 +30,9 @@ class AwsSnsSmsChannel
             return;
         }
         
+        // setting default message type to transactional.
+        $this->client->setSMSAttributes(array('attributes' => ['DefaultSMSType' => 'Transactional', 'DefaultSenderID' => 'MW']));
+        
         $data = [
             'PhoneNumber' => $message->phoneNumber,
             'MessageStructure' => $message->messageStructure,
